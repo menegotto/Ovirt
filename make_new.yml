@@ -26,17 +26,14 @@
           root_password: centos
           nic_name: eth0
           nic_on_boot: true
-          nic_boot_protocol: static
-          nic_ip_address: 192.168.0.180
-          nic_netmask: 255.255.255.0
-          nic_gateway: 192.168.0.1
+          nic_boot_protocol: dhcp
           custom_script: |
             runcmd:
               - hostnamectl set-hostname {{ item }}
               - yum -y remove cloud-init
         wait: true
       with_items:
-         - haproxy 
+         - "{{ hostname }}" 
     - name: Cleanup RHV auth token
       ovirt_auth:
         ovirt_auth: "{{ ovirt_auth }}"
