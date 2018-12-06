@@ -1,0 +1,43 @@
+---
+- hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Login to RHV
+      ovirt_auth:
+        url: https://srv.siworks.org/ovirt-engine/api
+        insecure: yes
+        username: admin@internal
+        password: c3lul4rM4ld1to
+
+    - name: Create VMs
+      ovirt_vm:
+        auth: "{{ ovirt_auth }}"
+        cluster: OvirtCL
+        template: Rhel7_Cloud
+        name: "{{ item }}"
+        state: running
+        nics:
+          - name: nic1
+            profile_name: interna
+        cloud_init:
+          host_name: "{{ item }}"
+          user_name: centos
+          root_password: centos
+          nic_name: eth0
+          nic_on_boot: true
+          nic_boot_protocol: static
+          nic_ip_address: 192.168.0.180
+          nic_netmask: 255.255.255.0
+          nic_gateway: 192.168.0.1
+          custom_script: |
+            runcmd:
+              - hostnamectl set-hostname {{ item }}
+              - yum -y remove cloud-init
+        wait: true
+      with_items:
+         - haproxy 
+    - name: Cleanup RHV auth token
+      ovirt_auth:
+        ovirt_auth: "{{ ovirt_auth }}"
+        state: absent
