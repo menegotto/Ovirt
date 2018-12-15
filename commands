@@ -1,0 +1,1000 @@
+   18  iptables -I FORWARD -d 192.168.0.0/24 -j ACCEPT
+   19  tcpdump -i any -n -nnn host 192.168.0.1
+   20  tcpdump -i any -n -nnn host 192.168.0.166
+   21  iptables -t nat -I POSTROUTING -o interna -J MASQUERADE
+   22  iptables -t nat -I POSTROUTING -o interna -j MASQUERADE
+   23  tcpdump -i any -n -nnn host 192.168.0.166
+   24  iptables -I OUTPUT -j ACCEPT
+   25  tcpdump -i any -n -nnn host 192.168.0.166
+   26  systemctl stop firewalld
+   27  systemctl start firewalld
+   28  systemctl stop firewalld
+   29  iptables-save 
+   30  tcpdump -i any -n -nnn host 192.168.0.166
+   31  ping -I interna 192.168.0.166
+   32  systemctl start firewalld
+   33  firewall-cmd --direct --add-rule ipv4 nat POSTROUTING 0 -o ovirtmgmt -j MASQUERADE
+   34  firewall-cmd --direct --add-rule ipv4 filter FORWARD 0 -i interna -o ovirtmgmt -j ACCEPT
+   35  firewall-cmd --direct --add-rule ipv4 filter FORWARD 0 -i ovirtmgmt -o interna -m state --state RELATED,ESTABLISHED -j ACCEPT
+   36  ping www.google.com
+   37  vim /etc/dnsmasq.conf 
+   38  ping -I interna 192.168.0.166
+   39  ping -I interna 192.168.0.1
+   40  ping -I interna 8.8.8.8
+   41  ip rule list
+   42  ip rule del from 192.168.0.0/24 lookup 3232235521
+   43  ip rule list
+   44  ping -I interna 8.8.8.8
+   45  ping -I interna 192.168.0.166
+   46  tail -f /var/log/dnsmasq.log
+   47  cat /proc/sys/net/ipv4/ip_forward
+   48  systemctl stop firewalld
+   49  ip route 
+   50  ip route get 192.168.0.166
+   51  ip route get 8.8.8.8
+   52  ip r
+   53  iptables-save 
+   54  iptables -t nat -I POSTROUTING -o interna -j MASQUERADE
+   55  ip a
+   56  tcpdump -i any -n -nn host 192.168.0.166
+   57  tcpdump -i any -n -nn icmp
+   58  cat /proc/sys/net/ipv4/ip_forward
+   59  ip route list
+   60  iptables -I input -j ACEPT
+   61  iptables -I INPUT -j ACEPT
+   62  iptables -I INPUT -j ACCEPT
+   63  iptables -I OUTPUT -j ACCEPT
+   64  tcpdump -i any -n -nn icmp
+   65  iptables -I FORWARD -s 0.0.0.0/0 -J ACCEPT
+   66  iptables -I FORWARD -s 0.0.0.0/0 -j ACCEPT
+   67  iptables -I FORWARD -d 0.0.0.0/0 -j ACCEPT
+   68  tcpdump -i any -n -nn icmp
+   69  iptables -t nat -D POSTROUTING -o interna -j MASQUERADE
+   70  tcpdump -i any -n -nn icmp
+   71  ip rule list
+   72  tcpdump -i any -n -nn-
+   73  tcpdump -i any -n -n
+   74  tcpdump -i any -n -nn
+   75  tcpdump -i any host 192.168.0.166
+   76  ping -I interna 192.168.0.166
+   77  ping -I interna 192.168.0.1
+   78  ping -I ovirtmgmt 192.168.0.166
+   79  ping -I ovirtmgmt 8.8.8.8
+   80  route -n
+   81  route add -host 192.168.0.166 dev interna
+   82  ping -I ovirtmgmt 8.8.8.8
+   83  ping -I ovirtmgmt 192.168.0.166
+   84  ifconfig
+   85  ip route
+   86  route del -host 192.168.0.166 dev interna
+   87  iptables-save 
+   88  history | grep -i iptables
+   89  iptables -t nat -I POSTROUTING -o ovirtmgmt -j MASQUERADE
+   90  iptables-save 
+   91  iptables -t nat -nÇ
+   92  iptables -t nat -nL
+   93  systemctl start firwalld
+   94  systemctl start firewalld
+   95  firewall-cmd --direct --add-rule ipv4 nat POSTROUTING 0 -o ovirtmgmt -j MASQUERADE
+   96  firewall-cmd --direct --add-rule ipv4 nat POSTROUTING 0 -o ovirtmgmt -j MASQUERADE --permanent
+   97  firewall-cmd --permanent --direct --add-rule ipv4 nat POSTROUTING 0 -o ovirtmgmt -j MASQUERADE
+   98  firewall-cmd --permanent --add-service=dns
+   99  firewall-cmd --direct --add-rule ipv4 filter FORWARD 0 -i ovirtmgmt -o interna -j ACCEPT
+  100  firewall-cmd --direct --add-rule ipv4 filter FORWARD 0 -i interna -o ovirtmgmt -j ACCEPT
+  101  nslookup 
+  102  firewall-cmd --direct --add-rule ipv4 filter FORWARD 0 -i ovirtmgmt -o interna -m state --state RELATED,ESTABLISHED -j ACCEPT
+  103  firewall-cmd --add-port=53/udp
+  104  firewall-cmd --add-port=67/udp
+  105  firewall-cmd --add-port=123/udp
+  106  history 
+  107  firewall-cmd --permanent --direct --add-rule ipv4 nat POSTROUTING 0 -o ovirtmgmt -j MASQUERADE
+  108  firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i interna -o ovirtmgmt -j ACCEPT
+  109  firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i ovirtmgmt -o interna -m state --state RELATED,ESTABLISHED -j ACCEPT
+  110  firewall-cmd --permanent --add-port=53/udp
+  111  firewall-cmd --permanent --add-port=67/udp
+  112  firewall-cmd --permanent --add-port=123/udp
+  113  firewall-cmd --reload
+  114  cd /infra/
+  115  ls -la
+  116  cp -r make_vm.yml make_new.yml 
+  117  vim make_new.yml 
+  118  ansible-playbook make_new.yml
+  119  cat make_new.yml 
+  120  ping vm000001
+  121  vim make_new.yml 
+  122  ping vm000001
+  123  vim make_new.yml 
+  124  ansible-playbook make_new.yml
+  125  ping vm000002
+  126  ssh vm000002 -l centos
+  127  ls
+  128  pwd
+  129  cd /infra/
+  130  ls
+  131  vim make_vm.yml 
+  132  cd /infra/
+  133  ls
+  134  ls -la
+  135  rm -rf .make_vm.yml.swp 
+  136  vim make_vm.yml 
+  137  history
+  138  vim make_new.yml 
+  139  vim make_vm.yml 
+  140  ansible-playbook make_vm.yml 
+  141  ls
+  142  vim delete_vm.yml 
+  143  ansible-playbook delete_vm.yml 
+  144  vim make_new.yml 
+  145  ansible-playbook make_new.
+  146  ansible-playbook make_new.yml 
+  147  ping vini000001
+  148  history
+  149  ssh vini000001 -l centos
+  150  exit
+  151  useradd diego
+  152  usermod -a -G wheel diego
+  153  passwd diego
+  154  exit
+  155  cat ~/.ssh/authorized_keys
+  156  exit
+  157  pwd
+  158  ls -la
+  159  cd /
+  160  ls -la
+  161  cd infra/
+  162  ls -la
+  163  vim make_new.yml
+  164  ansible-playbook make_new.yml 
+  165  ssh root@ovh-k8s-master-01.siworks.local
+  166  cat /etc/hosts
+  167  ping ovh-k8s-node-01.siworks.local
+  168  ifconfig
+  169  ping ovh-k8s-node-01
+  170  ping ovh-k8s-master[-01
+  171  ping ovh-k8s-master-01
+  172  ssh root@ovh-k8s-master-01
+  173  clear
+  174  ls -la
+  175  git
+  176  ls -la
+  177  git clone https://github.com/kubernetes-incubator/kubespray.git
+  178  ls -la
+  179  cd kubespray/
+  180  ls -la
+  181  c d..
+  182  cd ..
+  183  clear
+  184  ls -la
+  185  rm -rf kubespray/
+  186  clear
+  187  ls -la
+  188  vim make_new.
+  189  vim make_new.yml 
+  190  ansible-playbook make_new.yml 
+  191  ping awx
+  192  ssh root@awx
+  193  history | grep -i iptables
+  194  exit
+  195  fail2ban-client status sshd
+  196  systemctl start fail2ban
+  197  fail2ban-client status sshd
+  198  httpd -S
+  199  vim /etc/httpd/conf.d/ssl.conf
+  200  cat /etc/httpd/conf.d/ssl.conf
+  201  vim /etc/httpd/conf.d/ssl.conf
+  202  ping awx.siworks.org
+  203  ping awx
+  204  vim /etc/httpd/conf.d/ssl.conf
+  205  mkdir -p /var/www/vhosts/awx
+  206  echo "teste awx" > /var/www/vhosts/awx/index.html
+  207  vim /etc/httpd/conf.d/ssl.conf
+  208  apachectl configtest
+  209  apachectl graceful
+  210  httpd -S
+  211  vim /etc/httpd/conf.d/ssl.conf
+  212  apachectl graceful
+  213  httpd -S
+  214  cd /etc/httpd/
+  215  ls -la
+  216  grep -r redire *
+  217  ls -la
+  218  ls -la conf
+  219  vim conf/httpd.conf 
+  220  vim conf.d/ovirt-engine-root-redirect.conf 
+  221  apachectl graceful
+  222  vim conf.d/ovirt-engine-root-redirect.conf 
+  223  vim conf.d/z-ovirt-engine-proxy.conf 
+  224  vim conf.d/ssl.conf
+  225  curl ErrorLog logs/ssl_error_log
+  226  TransferLog logs/ssl_access_log
+  227  LogLevel warn
+  228  SSLEngine on
+  229  SSLProtocol all -SSLv3 -TLSv1
+  230  SSLCertificateFile /etc/pki/ovirt-engine/certs/apache.cer
+  231  SSLCertificateKeyFile /etc/pki/ovirt-engine/keys/apache.key.nopass
+  232  SSLCACertificateFile /etc/pki/ovirt-engine/apache-ca.pem
+  233  <Files ~ "\.(cgi|shtml|phtml|php3?)$">
+  234      SSLOptions +StdEnvVars
+  235  </Files>
+  236  <Directory "/var/www/cgi-bin">
+  237      SSLOptions +StdEnvVars
+  238  </Directory>
+  239  BrowserMatch "MSIE [2-5]"          nokeepalive ssl-unclean-shutdown          downgrade-1.0 force-response-1.0
+  240  CustomLog logs/ssl_request_log           "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"
+  241  vim conf.d/ovirt-engine-root-redirect.conf 
+  242  ping awx.siworks.org
+  243  ping awx
+  244  vim conf.d/ovirt-engine-root-redirect.conf 
+  245  ls -la
+  246  vim conf.d/z-ovirt-engine-proxy.conf 
+  247  vim conf.d/ssl.conf
+  248  vim conf.d/ovirt-engine-root-redirect.conf 
+  249  apachectl configtest
+  250  apachectl graceful
+  251  vim conf.d/ovirt-engine-root-redirect.conf 
+  252  apachectl graceful
+  253  vim conf.d/ovirt-engine-root-redirect.conf 
+  254  apachectl configtest
+  255  apachectl graceful
+  256  vim conf.d/ovirt-engine-root-redirect.conf 
+  257  apachectl configtest
+  258  apachectl graceful
+  259  vim conf.d/ovirt-engine-root-redirect.conf 
+  260  apachectl graceful
+  261  vim conf.d/ovirt-engine-root-redirect.conf 
+  262  apachectl graceful
+  263  history
+  264  ping vini000001
+  265  ssh centos@vini000001
+  266  cd /etc/httpd/
+  267  ls -la
+  268  vim conf.d/ovirt-engine-root-redirect.conf 
+  269  apachectl configtest
+  270  apachectl graceful
+  271  vim conf.d/ovirt-engine-root-redirect.conf 
+  272  apachectl graceful
+  273  netstat -ntpl
+  274  vim conf.d/ovirt-engine-root-redirect.conf 
+  275  apachectl graceful
+  276  vim conf.d/ovirt-engine-root-redirect.conf 
+  277  apachectl graceful
+  278  vim conf.d/ovirt-engine-root-redirect.conf 
+  279  apachectl graceful
+  280  vim conf.d/ovirt-engine-root-redirect.conf 
+  281  apachectl graceful
+  282  vim conf.d/ovirt-engine-root-redirect.conf 
+  283  apachectl graceful
+  284  vim /etc/network/interfaces
+  285  vim /etc/sysconfig/network-scripts/ifcfg-eth0 
+  286  vim /etc/sysconfig/network-scripts/ifcfg-interna 
+  287  vim /etc/sysconfig/network-scripts/ifcfg-eth1
+  288  history | grep ifcfg
+  289  sudo marcos
+  290  su marcos
+  291  exit
+  292  ip arr
+  293  ip adddr
+  294  ip addr
+  295  ip addr | grep 02:00:00:7f:f3:79
+  296  ip addr | grep :f3:79
+  297  ip addr | grep f3:79
+  298  ip addr | more
+  299  ping awx
+  300  ping 147.135.85.86
+  301  ip addr | more
+  302  ping 147.135.85.86
+  303  ip addr | more
+  304  ip addr | grep eth
+  305  ip addr
+  306  exit
+  307  clear
+  308  ssh root@awx
+  309  exit
+  310  exiy
+  311  exit
+  312  cd /etc/sysconfig/network-scripts/
+  313  ls -la
+  314  cat ifcfg-ovirtmgmt
+  315  cat ifcfg-eth0
+  316  cat ifcfg-ovirtmgmt
+  317  cat ifcfg-eth0
+  318  cat ifcfg-eth1
+  319  cat ifcfg-interna
+  320  ls -la
+  321  cp ifcfg-ovirtmgmt ifcfg-vmlb
+  322  vim ifcfg-vmlb
+  323  vim route-interna 
+  324  vim route-ovirtmgmt 
+  325  vim route6-eth0 
+  326  vim network-functions
+  327  vim rule-ovirtmgmt 
+  328  ls -la
+  329  cat ifcfg-eth0 
+  330  rm -f ifcfg-vmlb 
+  331  ls -la
+  332  vim /etc/network/interfaces
+  333  vim /etc/network/interfaces /etc/sysconfig/network
+  334  vim /etc/sysconfig/network
+  335  ipaddr
+  336  cd ..
+  337  ls -la
+  338  ifconfig
+  339  ip addr
+  340  ping 147.135.85.86 
+  341  ip addr
+  342  ssh root@awx
+  343  ping 147.135.85.86
+  344  ssh root@awx
+  345  ping 147.135.85.86
+  346  ssh root@awx
+  347  ls -la
+  348  cd network
+  349  vim libvirtd
+  350  vim /etc/libvirt/libvirtd.conf
+  351  clear
+  352  cd /etc/sysconfig/network-scripts/
+  353  ls
+  354  cat ifcfg-eth0
+  355  cat ifcfg-ovirtmgmt
+  356  vim /etc/sysconfig/network-scripts/ifcfg-eth0:1
+  357  vim /etc/sysconfig/network-scripts/ifcfg-ovirtmgmt 
+  358  vim /etc/sysconfig/network-scripts/ifcfg-eth0 
+  359  vim /etc/sysconfig/network-scripts/ifcfg-lbvm
+  360  GATEWAY_IP - 255.255.255.255 lbvm
+  361  vim /etc/sysconfig/network-scripts/route-lbvm
+  362  ifup lbvm
+  363  vim /etc/sysconfig/network-scripts/route-lbvm
+  364  vim /etc/sysconfig/network-scripts/ifcfg-lbvm
+  365  mv /etc/sysconfig/network-scripts/ifcfg-lbvm /etc/sysconfig/network-scripts/ifcfg-eth0:1
+  366  ifup eth0:1
+  367  vim /etc/sysconfig/network-scripts/ifcfg-eth0:1
+  368  ifup eth0:1
+  369  ifdown eth0:1
+  370  cat /etc/sysconfig/network-scripts/ifcfg-eth0:1
+  371  ping 147.135.85.86
+  372  ifup eth0:1
+  373  ping 147.135.85.86
+  374  ifdown eth0:1
+  375  ssh root@awx
+  376  ip addr
+  377  ping 147.135.85.86
+  378  ifup eth0:1
+  379  ls -la
+  380  clear
+  381  cd /infra/
+  382  ls -la
+  383  vim make_new.yml 
+  384  ansible-playbook make_new.yml 
+  385  ssh root@haproxy
+  386  history | grep -i iptables
+  387  vim /etc/sysconfig/iptables
+  388  iptables -t nat -A PREROUTING -i eth0:1 -p tcp --dport 22 -j DNAT --to-destination 192.168.0.180:22
+  389  iptables
+  390  iptables --help
+  391  iptables -L
+  392  vim /etc/sysconfig/iptables
+  393  iptables -t nat -A PREROUTING -i eth0:! -p tcp --dport 22 -j DNAT --to 192.168.0.180:80
+  394  cat /etc/sysctl.conf
+  395  iptables -A FORWARD -i eth0:1 -j ACCEPT
+  396  iptables -A FORWARD -o eth0:1 -j ACCEPT
+  397  systemctl restart iptables
+  398  iptables -t nat -A PREROUTING -i eth0:1 -p tcp --dport 22 -j DNAT --to 192.168.0.180:80
+  399  systemctl restart iptables
+  400  iptables -t nat -A  PREROUTING -d 147.135.85.86 -j DNAT --to-destination 192.168.102.37
+  401  iptables -t nat -A POSTROUTING -s 192.168.102.37 -j SNAT --to-source 147.135.85.86
+  402  vim /etc/sysconfig/iptables
+  403  iptables -A INPUT -s 147.135.85.86/32 -j ACCEPT
+  404  sudo iptables -A INPUT -p tcp -s 147.135.85.86/32 --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  405  iptables -L
+  406  ssh root@haproxy
+  407  ssh root@awx
+  408  ls -la
+  409  iptables -L
+  410  history | grep -i iptables
+  411  systemctl restart iptables
+  412  iptables -L
+  413  ping 8.8.8.8
+  414  ssh root@awx
+  415  ping 192.168.0.166
+  416  iptables -I FORWARD -d 192.168.0.0/24 -j ACCEPT
+  417  iptables-save 
+  418  ssh root@awx
+  419  iptables -t nat -I POSTROUTING -o interna -J MASQUERADE
+  420  iptables -I OUTPUT -j ACCEPT
+  421  iptables-save 
+  422  iptables -t nat -I POSTROUTING -o interna -j MASQUERADE
+  423  iptables -I INPUT -j ACCEPT
+  424  iptables -I OUTPUT -j ACCEPT
+  425  iptables -I FORWARD -s 0.0.0.0/0 -j ACCEPT
+  426  iptables -t nat -D POSTROUTING -o interna -j MASQUERADE
+  427  iptables-save 
+  428  iptables -t nat -I POSTROUTING -o ovirtmgmt -j MASQUERADE
+  429  iptables-save 
+  430  iptables -t nat -nL
+  431  ssh root@awx
+  432  docker
+  433  sudo yum remove docker                   docker-client                   docker-client-latest                   docker-common                   docker-latest                   docker-latest-logrotate                   docker-logrotate                   docker-selinux                   docker-engine-selinux                   docker-engine
+  434  yum install -y yum-utils   device-mapper-persistent-data   lvm2
+  435  sudo yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo
+  436  sudo yum install docker-ce
+  437  yum install haproxy
+  438  vim /etc/haproxy/haproxy.cfg .
+  439  vim /etc/haproxy/haproxy.cfg
+  440  cd /etc/haproxy/
+  441  ls -la
+  442  cp haproxy.cfg haproxy.cfg.bkp
+  443  echo > haproxy.cfg
+  444  vim haproxy.cfg
+  445  ping haproxy
+  446  vim haproxy.cfg
+  447  systemctl status haproxy
+  448  systemctl start haproxy
+  449  systemctl status haproxy
+  450  systemctl start haproxyifconfig
+  451  ifconfig
+  452  vim haproxy.cfg
+  453  systemctl start haproxy
+  454  systemctl status haproxy
+  455  journalctl -u haproxy
+  456  vim haproxy.cfg
+  457  ip addr
+  458  ip r l
+  459  cat /etc/sysconfig/network-scripts/route-interna 
+  460  ip a
+  461  ifconfig
+  462  ls
+  463  cd /etc/sysconfig/network-scripts/
+  464  ls
+  465  touch route-eth0:1
+  466  cat ifcg-eth0:1
+  467  la
+  468  ls
+  469  cat ifcfg-eth0:1
+  470  cat ifcfg-eth0
+  471  ip r l
+  472  echo "147.135.1.254" >> route-eth0:1
+  473  vim route-eth0\:1 
+  474  rm -f route-eth0\:1 
+  475  ifconfig
+  476  ifdown eth0:1
+  477  ifconfig
+  478  ip addr
+  479  ifconfig
+  480  cd /etc/haproxy/
+  481  ls -la
+  482  vim haproxy.cfg
+  483  systemctl restart iptables
+  484  systemctl status haproxy
+  485  systemctl restart iptables
+  486  systemctl status haproxy
+  487  vim haproxy.cfg
+  488  ls
+  489  rm -f haproxy.cfg.bkp 
+  490  clear
+  491  ls -la
+  492  systemctl restart haproxy
+  493  systemctl status haproxy
+  494  ifup eth0:1
+  495  systemctl restart haproxy
+  496  systemctl status haproxy
+  497  systemctl restart haproxy
+  498  ifconfig
+  499  exit
+  500  ping http://srv.siworks.org
+  501  ping srv.siworks.org
+  502  curl http://srv.siworks.org
+  503  curl http://srv.siworks.org/ovirt-engine/
+  504  reboot
+  505  ifdown eth0:1
+  506  ls -la
+  507  systemctl stop haproxy
+  508  ls -la
+  509  htop
+  510  top
+  511  ps aux
+  512  ifconfig
+  513  iṕtables -L
+  514  iptables-L
+  515  iptables -L
+  516  iptables -t nat -I POSTROUTING -s 192.168.0.166 -j MASQUERADE
+  517    iptables -t nat -D POSTROUTING -s 192.168.0.166 -j MASQUERADE
+  518    iptables -I FORWARD -s 192.168.0.0/24 -j ACCEPT
+  519  yum remove haproxy
+  520  ls -la
+  521  systemctl status vdsmd
+  522  systemctl restart vdsmd
+  523  systemctl status vdsmd
+  524  cd /etc/httpd/
+  525  ls -la
+  526  httpd -S
+  527  systemctl restart httpd
+  528  systemctl status httpd
+  529  iptables -I FORWARD -d 192.168.0.0/24 -j ACCEPT
+  530    iptables-save 
+  531    iptables -I OUTPUT -j ACCEPT
+  532    iptables-save 
+  533    iptables -t nat -I POSTROUTING -o interna -j MASQUERADE
+  534    iptables-save 
+  535    iptables -I input -j ACEPT
+  536    iptables -I INPUT -j ACCEPT
+  537    iptables -I FORWARD -s 0.0.0.0/0 -J ACCEPT
+  538    iptables -I FORWARD -d 0.0.0.0/0 -j ACCEPT
+  539    iptables -t nat -D POSTROUTING -o interna -j MASQUERADE
+  540    iptables-save 
+  541    history | grep -i iptables
+  542    iptables -t nat -I POSTROUTING -o ovirtmgmt -j MASQUERADE
+  543    iptables-save 
+  544    iptables -t nat -nL
+  545  ifconfig
+  546  cd /etc/sysconfig/network-scripts/
+  547  ls -la
+  548  cat ifcfg-eth0:1
+  549  nmcli con shown
+  550  nmcli con show
+  551  yum provides nmtui
+  552  yum install NetworkManager-tui-1.10.2-16.el7_5.x86_64 -y
+  553  nmtui
+  554  ifconfig
+  555  ifconfig -a
+  556  ifconfig
+  557  vim /etc/sysconfig/network-scripts/ifcfg-eth0:1
+  558  ifconfig
+  559  ifup eth0:1
+  560  ifconfig
+  561  vim /etc/haproxy/haproxy.cfg
+  562  vim /etc/haproxy/haproxy.cfg.rpmsave 
+  563  cd /etc/haproxy/
+  564  mv haproxy.cfg.rpmsave haproxy.cfg
+  565  systemctl status haproxy
+  566  systemctl start haproxy
+  567  systemctl status ha*
+  568  rpm -qa | grep -i haproxy
+  569  yum install haproxy -y
+  570  systemctl status ha*
+  571  vim /etc/haproxy/haproxy.cfg
+  572  systemctl status haproxy
+  573  systemctl start haproxy
+  574  systemctl status haproxy
+  575  netstat -ntpl
+  576  vim /etc/haproxy/haproxy.cfg
+  577  systemctl restart haproxy
+  578  systemctl status haproxy
+  579  vim /etc/haproxy/haproxy.cfg
+  580  netstat -ntpl
+  581  vim /etc/haproxy/haproxy.cfg
+  582  ping 192.168.0.180
+  583  systemctl status dns
+  584  systemctl status dns*
+  585  tail -f /var/log/messages
+  586  tail -f /var/log/dnsmasq.log
+  587  vim /etc/haproxy/haproxy.cfg
+  588  ping 192.168.0.180
+  589  ifconfig
+  590  firewall-cmd --add-rich-rule='rule family="ipv4" destination address="147.135.85.86" forward-port to-addr="192.168.0.180" protocol="tcp" port="0-65535"'
+  591  ssh 192.168.0.180
+  592  firewall-cmd --remove-rich-rule='rule family="ipv4" destination address="147.135.85.86" forward-port to-addr="192.168.0.180" protocol="tcp" port="0-65535"'
+  593  firewall-cmd --permanent --zone=testing --add-rich-rule='rule family=ipv4 destination address=147.135.85.86 forward-port port=22 protocol=tcp to-port=22 to-addr=192.168.0.180'
+  594  firewall-cmd --permanent --add-rich-rule='rule family=ipv4 destination address=147.135.85.86 forward-port port=22 protocol=tcp to-port=22 to-addr=192.168.0.180'
+  595  iptables -t nat -I PREROUTING -d 147.135.85.86/32 -p tcp --destination 192.168.0.180
+  596  iptables -t nat -I PREROUTING -d 147.135.85.86/32 -p tcp -j DNAT --to-destination 192.168.0.180
+  597  iptables -I FORWARD -s 192.168.0.180 -j ACCEPT
+  598  iptables -I FORWARD -d 192.168.0.180 -j ACCEPT
+  599  ssh 147.135.85.86
+  600  iptables -t nat -nL
+  601  2~
+  602  tcpdump -i any -n -nn host 192.168.0.180
+  603  systemctl restart firewalld
+  604  vim teste.yml
+  605  ansible-playbook teste.yml 
+  606  ifconfig
+  607  vim teste.yml
+  608  ansible-playbook teste.yml 
+  609  vim teste.yml
+  610  ansible-playbook teste.yml 
+  611  vim teste.yml
+  612  ansible-playbook teste.yml 
+  613  vim teste.yml
+  614  ansible-playbook teste.yml 
+  615  vim teste.yml
+  616  ansible-playbook teste.yml 
+  617  vim teste.yml
+  618  ansible-playbook teste.yml 
+  619  vim teste.yml
+  620  ansible-playbook teste.yml 
+  621  vim teste.yml
+  622  ansible-playbook teste.yml 
+  623  vim teste.yml
+  624  ansible-playbook teste.yml 
+  625  vim teste.yml
+  626  ansible-playbook teste.yml 
+  627  vim teste.yml
+  628  ansible-playbook teste.yml 
+  629  vim teste.yml
+  630  ansible-playbook teste.yml 
+  631  vim teste.yml
+  632  ansible-playbook teste.yml 
+  633  vim teste.yml
+  634  ansible-playbook teste.yml 
+  635  vim teste.yml
+  636  ansible-playbook teste.yml  -vvvvvvv
+  637  vim teste.yml
+  638  ansible-playbook teste.yml  -vvvvvvv
+  639  vim teste.yml
+  640  ssh haproxy
+  641  ifconfig
+  642  ifconfig eth0:1 down
+  643  ifconfig
+  644  ping haproxy
+  645  ssh haproxy
+  646  dmesg 
+  647  ifconfig -a
+  648  ifconfig
+  649  ifconfig eth0:1 up
+  650  vim /etc/sysconfig/network-scripts/ifcfg-eth0:1
+  651  ifconfig eth0:1 up
+  652  ip a
+  653  ifconfig
+  654  ifconfig | more
+  655  vim /etc/sysconfig/network-scripts/ifcfg-eth0:1
+  656  history | grep -i if
+  657  ifup eth0:1
+  658  ifconfig
+  659  tcpdump -i any -n -nn icmp
+  660  tcpdump -i any -n -nn host 119.42.33.121
+  661  tcpdump -i any -n -nn host 201.54.159.14
+  662  tcpdump -i any -n -nn host 201.54.159.14 not port 22
+  663  tcpdump -i any -n -nn host 201.54.159.14 and not port 22
+  664  tcpdump -i any -n -nn host 201.54.159.14 and not port 22 and 443
+  665  tcpdump -i any -n -nn port 6060
+  666  tcpdump -i any -n -nn port 6060 and host 201.54.159.14
+  667  iptables -t NAT -I PREROUTING -d 147.135.85.86 -p tcp --dport 22 -j DNAT --to 192.168.0.180
+  668  ping haproxy
+  669  iptables -t nat -I PREROUTING -d 147.135.85.86 -p tcp --dport 22 -j DNAT --to 192.168.0.180
+  670  iptables -t nat -I PREROUTING -d 147.135.85.86 -p tcp --dport 2222 -j DNAT --to 192.168.0.180:22
+  671  tcpdump -i any -n -nn port 2222
+  672  history | grep -i firewalld
+  673  tcpdump -i any -n -nn host 192.168.0.180
+  674  iptables -i FORWARD -s 192.168.0.180 -j ACCEPT
+  675  iptables -I FORWARD -s 192.168.0.180 -j ACCEPT
+  676  iptables -I FORWARD -d 192.168.0.180 -j ACCEPT
+  677  iptables-save 
+  678  iptables -t nat -nL
+  679  firewall-cmd --reload
+  680  iptables -t nat -nL
+  681  systemctl stop firwalld
+  682  systemctl stop firewalld
+  683  iptables-save 
+  684  systemctl start firewalld
+  685  iptables-save 
+  686  iptables -t nat -nL
+  687  iptables -F
+  688  iptables -t nat -nL
+  689  iptables -t nat -F
+  690  iptables -t nat -nL
+  691  grub2-editenv list
+  692  vim /etc/default/grub 
+  693  vim /boot/grub2/grub.cfg
+  694  grub2-set-default 2
+  695  grub2-editenv list
+  696  reboot
+  697  ssh haproxy
+  698  iptables-save 
+  699  iptables -t nat -nL
+  700  ip rule list
+  701  systemctl stop firewalld
+  702  iptables -t nat -I POSTROUTING -o interna -j MASQUERADE
+  703  systemctl stop iptables
+  704  iptables -t nat -nL
+  705  systemctl start firewaald
+  706  systemctl start firewalld
+  707  iptables -t nat -nL
+  708  systemctl stop firewalld
+  709  iptables -t nat -nL
+  710  iptables -t nat -D POSTROUTING -o interna -j MASQUERADE
+  711  systemctl start iptables
+  712  iptables -t nat -D POSTROUTING -o interna -j MASQUERADE
+  713  iptables -t nat -nL
+  714  iptables -t nat -I POSTROUTING -o ovirtmgr -j MASQUERADE
+  715  ifconfig | grep -i ovirt
+  716  iptables -t nat -D POSTROUTING -o ovirtmgr -j MASQUERADE
+  717  iptables -t nat -I POSTROUTING -o ovirtmgmt -j MASQUERADE
+  718  cat /proc/sys/net/ipv4/ip_forward
+  719  ping www.google.com
+  720  iptables -I FORWARD -s interna -j ACCEPT
+  721  iptables -I FORWARD -o interna -j ACCEPT
+  722  tcpdump -i ovirtmgmt -n -nn icmp
+  723  tcpdump -i interna -n -nn icmp
+  724  tcpdump -i ovirtmgmt -n -nn icmp
+  725  ip rule list
+  726  systemctl stop iptables
+  727  systemctl start firewalld
+  728  firewall-cmd --list
+  729  firewall-cmd --list-all
+  730  ifconfig | grep -i ovirt
+  731  ifconfig | grep -i eth0
+  732  history | grep -i firew
+  733  firewall-cmd --permanent --del-rich-rule='rule family=ipv4 destination address=147.135.85.86 forward-port port=22 protocol=tcp to-port=22 to-addr=192.168.0.180'
+  734  firewall-cmd --permanent --remove-rich-rule='rule family=ipv4 destination address=147.135.85.86 forward-port port=22 protocol=tcp to-port=22 to-addr=192.168.0.180'
+  735  firewall-cmd --list-all
+  736  firewall-cmd --permanent --remove-rich-rule='rule family="ipv4" source address="192.168.0.166/24" masquerade'
+  737  firewall-cmd --reload
+  738  firewall-cmd --list-all
+  739  history | grep -i firew
+  740  history
+  741  ping -I interna 8.8.8.8
+  742  ping -I ovirtmgmt 192.168.0.166
+  743  ping -I ovirtmgmt interna
+  744  ping -I ovirtmgmt 8.8.8.8
+  745  ip rule list
+  746  ip rule del from 192.168.0.0/24 lookup 3232235521
+  747  ping -I interna 8.8.8.8
+  748  ip rule list
+  749  ip rule add from 192.168.0.0/24 lookup 3232235521
+  750  ip rule del from 192.168.0.0/24 lookup 3232235521
+  751  vim /etc/rc.local 
+  752  :wqip rule del from 192.168.0.0/24 lookup 3232235521
+  753  vim /etc/rc.local 
+  754  cd /boot/
+  755  ls -la
+  756  grep -r menue *
+  757  vim grub2/grub.cfg
+  758  grub2-mkconfig –o /boot/grub2/grub.cfg
+  759  grub2-set-default list
+  760  grub2-set-default 2
+  761  grub2-editenv list
+  762  grep '^menuentry' /boot/grub2/grub.cfg 
+  763  vim /etc/default/grub
+  764  grub2-mkconfig -o /boot/grub2/grub.cfg
+  765  history | grep =i firewall
+  766  history | grep =i firewall
+  767  history | grep -i firewall
+  768  firewall-cmd --add-rich-rule='rule family=ipv4 destination address=147.135.85.86 forward-port port=22 protocol=tcp to-port=22 to-addr=192.168.0.180'
+  769  firewall-cmd --remove-rich-rule='rule family=ipv4 destination address=147.135.85.86 forward-port port=22 protocol=tcp to-port=22 to-addr=192.168.0.180'
+  770  firewall-cmd --add-rich-rule='rule family=ipv4 destination address=147.135.85.86 forward-port port=22 protocol=tcp to-port=0-65535 to-addr=192.168.0.180'
+  771  firewall-cmd --add-rich-rule='rule family=ipv4 destination address=147.135.85.86 forward-port port=22 protocol=tcp port=0-65535 to-addr=192.168.0.180'
+  772  firewall-cmd --permanent --add-rich-rule='rule family=ipv4 destination address=147.135.85.86 forward-port port=22 protocol=tcp port=0-65535 to-addr=192.168.0.180'
+  773  fail2ban-client status
+  774  systemctl start fail2ban
+  775  systemctl enable fail2ban
+  776  fail2ban-client status
+  777  fail2ban-client status sshd
+  778  tail -f /var/log/fail2ban.log
+  779  ssh haproxy
+  780  cd /home/marcos/
+  781  git clone https://github.com/dj-wasabi/ansible-zabbix-server.git
+  782  ls -la
+  783  cd ansible-zabbix-server/
+  784  ls -la
+  785  vim README.md 
+  786  grep -r mysql *
+  787  ls -la
+  788  vim inventory 
+  789  vim tasks/main.yml 
+  790  vim tasks/mysql.yml 
+  791  vim tasks/RedHat.yml 
+  792  ls -la
+  793  vim templates/zabbix_server.conf.j2 
+  794  cd /infra/
+  795  ls -la
+  796  ls -ltr
+  797  vim make_new.yml 
+  798  ansible-playbook make_new.yml 
+  799  python2.7 
+  800  yum search response
+  801  yum install python2-responses
+  802  python2.7 
+  803  yum search json
+  804  yum install python2-jmespath.noarch
+  805  yum search json
+  806  yum search raw
+  807  yum search scap
+  808  yum install python2-scapy.noarch
+  809  python2.7 
+  810  python
+  811  vim t
+  812  history | grep -i firewall
+  813  ssh haproxy
+  814  ssh centos@haproxy
+  815  ssh haproxy
+  816  clear
+  817  ssh haproxy
+  818  exit
+  819  ls
+  820  ls -la
+  821  cd /
+  822  ls
+  823  cd infra/
+  824  ls
+  825  vim make_new.yml 
+  826  ansible-playbook make_new.yml 
+  827  ssh centos@haproxy
+  828  vim make_new.yml 
+  829  ls -la
+  830  vim make_new.yml 
+  831  ansible-playbook make_new.yml 
+  832  ssh haproxy
+  833  ping haproxy
+  834  vim /etc/hosts
+  835  ssh haproxy
+  836  history | grep -i dnsmasq
+  837  vim /etc/dnsmasq.conf
+  838  systemctl restart dnsmasq
+  839  ping haproxy
+  840  cat /etc/hosts
+  841  vim /etc/dnsmasq.hosts.conf
+  842  cat  /etc/resolv.conf
+  843  cat /var/lib/misc/dnsmasq.leases
+  844  dnsmasq -HUP
+  845  vim /etc/hosts
+  846  ping haproxy
+  847  ssh haproxy
+  848  exit
+  849  vim /etc/dnsmasq.hosts.conf
+  850  cat /etc/dnsmasq.dhcp.conf
+  851  cd /etc/dnsmasq.d
+  852  ls -la
+  853  cd /bap
+  854  exit
+  855  cd /infra/
+  856  ls -a
+  857  ls -la
+  858  vim make_new.yml 
+  859  ssh awx
+  860  ls -la
+  861  ssh root@awx
+  862  ssh haproxy
+  863  history
+  864  elinks 192.168.0.180
+  865  firewall-cmd --permanent --remove-rich-rule='rule family=ipv4 destination address=147.135.85.86 forward-port port=22 protocol=tcp port=0-65535 to-addr=192.168.0.180'
+  866  firewall-cmd --permanent --add-rich-rule='rule family=ipv4 destination address=147.135.85.86 forward-port port=0-65535 protocol=tcp port=0-65535 to-addr=192.168.0.180'
+  867  curl 192.168.0.180
+  868  ping 192.168.0.180
+  869  curl -v http://192.168.0.180
+  870  telnet 192.168.0.180 80
+  871  history
+  872  cd /infra/
+  873  ls -la
+  874  git status
+  875  ls -la
+  876  git clone https://github.com/menegotto/Ovirt.git
+  877  ls -la
+  878  cp -r *.yml Ovirt/
+  879  cd Ovirt/
+  880  ls -la
+  881  git status
+  882  git add .
+  883  git status
+  884  git commit -a -m "adicionando vms ovirt"
+  885  git push
+  886  ls -la
+  887  vim make_new.yml 
+  888  vim make_vm.yml 
+  889  vim make_new.yml 
+  890  vim make_vm.yml 
+  891  vim make_new.yml 
+  892  ip a
+  893  ssh haproxy
+  894  ping testetudo
+  895  free -m
+  896  cat /proc/cpuinfo 
+  897  htop -d 2
+  898  yum install htop -y
+  899  htop -d 2
+  900  fail2ban-status
+  901  fail2ban-client 
+  902  fail2ban-client status
+  903  fail2ban-client status sshd
+  904  ssh awx
+  905  ip a
+  906  ifconfig
+  907  uptime
+  908  ifconfig
+  909  ifconfig -a | grep -i 86
+  910  ifconfig | 86
+  911  history | grep -i firewall
+  912  cd /infra/
+  913  ls -la
+  914  vim make_new.yml 
+  915  git commit -a -m "change rhev"
+  916  cd Ovirt/
+  917  git commit -a -m "change rhev"
+  918  git push
+  919  ssh awx
+  920  ls -la
+  921  mkdir roles
+  922  mv *.yml roles
+  923  ls -la
+  924  touch playbook_create_vm.yml
+  925  vim playbook_create_vm.yml 
+  926  ls -la
+  927  cd roles/
+  928  ls -la
+  929  vim make_new.yml 
+  930  cd ..
+  931  git pull
+  932  ls -la
+  933  cd ..
+  934  rm -rf Ovirt/
+  935  git clone https://github.com/menegotto/Ovirt.git
+  936  ls -la
+  937  cd Ovirt/
+  938  ls -la
+  939  ssh awx
+  940  history | more
+  941  ps aux
+  942  apachectl configtest
+  943  apachectl graceful
+  944  systemctl status httpd
+  945  journalctl -u httpd -f
+  946  netstat -ntpl
+  947  history | grep -i httpd
+  948  httpd -S
+  949  vim /etc/httpd/conf.d/ovirt.conf
+  950  vim /etc/httpd/conf.d/ssl.conf
+  951  systemctl restart httpd
+  952  journalctl -u httpd -f
+  953  systemctl restart vdsmd.service
+  954  vim /etc/httpd/conf.d/ssl.conf
+  955  systemctl restart httpd
+  956  journalctl -u httpd -f
+  957  tail -f /var/log/httpd/error_log
+  958  tail -f /var/log/httpd/ssl_error_log
+  959  vim /etc/httpd/conf.d/ssl.conf
+  960  systemctl restart ovirt-engine.service httpd.service
+  961  netstat -ntpl
+  962  vim /etc/httpd/conf.d/ssl.conf
+  963  vim /etc/ovirt-engine/engine.conf.d/99-custom-truststore.conf
+  964  vim /etc/ovirt-engine/engine.conf.d/10-setup-java.conf 
+  965  vim /etc/ovirt-engine/engine.conf.d/10-setup-pki.conf 
+  966  systemctl restart vdsmd.service
+  967  keytool -importcert -trustcacerts -keystore /etc/pki/ovirt-engine/.truststore -storepass mypass -file /etc/pki/tls/cert.pem 
+  968  keytool -importcert -trustcacerts -keystore /etc/pki/ovirt-engine/.truststore -storepass mypass -file /etc/pki/tls/certs/startcom.class1.server.ca.pem
+  969  vim /etc/ovirt-engine/engine.conf.d/10-setup-pki.conf 
+  970  vim /etc/httpd/conf.d/ssl.conf
+  971  keytool -importcert -trustcacerts -keystore /etc/pki/ovirt-engine/.truststore -storepass mypass -file /etc/pki/ovirt-engine/apache-ca.pem
+  972  keytool -importcert -trustcacerts -keystore /etc/pki/ovirt-engine/.truststore -storepass mypass -file /etc/pki/ovirt-engine/ca.pem 
+  973  systemctl restart ovirt-engine.service httpd.service vdsmd.service
+  974  openssl s_client -showcerts -connect srv.siworks.org
+  975  openssl s_client -showcerts -connect srv.siworks.org -debug
+  976  openssl s_client -showcerts -connect srv.siworks.org:443
+  977  vim ovirt.crt
+  978  ps aux | grep -i jdk
+  979  ps aux | grep -i j
+  980  ps aux | grep -i java
+  981  locate cacerts
+  982  yum install mlocate -t
+  983  yum install mlocate -y
+  984  update &
+  985  updatedb &
+  986  locate cacerts
+  987  keytool -importcert -keystore /etc/pki/ca-trust/extracted/java/cacerts -storepass changeit -file ovirt.crt -alias "srv.siworks.org"
+  988  keytool -importcert -keystore /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64/jre/lib/security/cacerts -storepass changeit -file ovirt.crt -alias "srv.siworks.org"
+  989  systemctl restart ovirt-engine.service httpd.service vdsmd.service
+  990  tail -f /var/log/ovirt-engine/engine.log
+  991  readlink -f /usr/lib/jvm/jre/lib/security/cacerts /etc/pki/ca-trust/extracted/java/cacerts
+  992  systemctl restart ovirt-engine.service httpd.service vdsmd.service
+  993  tail -f /var/log/ovirt-engine/engine.log
+  994  update-ca-trust 
+  995  locate cacerts
+  996  keytool -keystore /etc/pki/java/cacerts -importcert -alias srv -file /etc/pki/ca-trust/source/anchors/CA.crt
+  997  keytool -keystore /etc/pki/java/cacerts -importcert -alias srv -file /etc/pki/ovirt-engine/ca.pem 
+  998  keytool -keystore /etc/pki/java/cacerts -importcert -alias srv -file /etc/pki/ovirt-engine/apache-ca.pem 
+  999  cat /etc/pki/ovirt-engine/.truststore 
+ 1000  rpm -qa | grep -i postgres
+ 1001  yum remove postgres*
+ 1002  ps aux | grep -i yum
+ 1003  yum remove postgres*
+ 1004  ps aux | grep 17797
+ 1005  tail -f /var/log/messages
+ 1006  tail -f /var/log/ovirt-engine/setup/ovirt-engine-setup-20181215083808-te1pey.log
+ 1007  tail -f /var/log/messages
+ 1008  df -h
+ 1009  tail -f /var/log/ovirt-engine/setup/ovirt-engine-setup-20181215083808-te1pey.log
+ 1010  cat /var/log/ovirt-engine/setup/ovirt-engine-setup-20181215083808-te1pey.log
+ 1011  tail -f /var/log/ovirt-engine/setup/ovirt-engine-setup-20181215083808-te1pey.log
+ 1012  2~
+ 1013  tail -f /var/log/ovirt-engine/setup/ovirt-engine-setup-201812150*.log
+ 1014  cat /etc/pki/ovirt-engine/ca.pem 
+ 1015  tail -f /var/log/ovirt-engine/setup/ovirt-engine-setup-201812150*.log
+ 1016  tail -f /var/log/ovirt-engine/setup/ovirt-engine-*.log
+ 1017  history > commands
