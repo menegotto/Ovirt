@@ -1,0 +1,598 @@
+    1  mkdir /data
+    2  mkdir /iso
+    3  chown 36:36 /data/
+    4  chown 36:36 /iso/
+    5  tail -f /var/log/ovirt-engine/engine.log 
+    6  mkdir /infra
+    7  cd /infra/
+    8  git clone https://github.com/menegotto/Ovirt.git
+    9  ls -la
+   10  cd Ovirt/
+   11  ls -la
+   12  cd dnsmasq/
+   13  ls -la
+   14  vim /etc/dnsmasq.conf 
+   15  ls -la
+   16  cp -r dnsmasq.conf /etc/dnsmasq.conf 
+   17  ls -la
+   18  cp -r dnsmasq.dhcp.conf /etc/dnsmasq.d/
+   19  cp -r dnsmasq.hosts.conf /etc/dnsmasq.d/
+   20  vim /etc/dnsmasq.conf 
+   21  vim /etc/dnsmasq.d/dnsmasq.dhcp.conf 
+   22  vim /etc/dnsmasq.d/dnsmasq.hosts.conf 
+   23  ifconfig
+   24  route -n
+   25  cp -r /etc/sysconfig/network-scripts/ifcfg-eth0 /infra/Ovirt/
+   26  vim /etc/sysconfig/network-scripts/ifcfg-eth0
+   27  cat /infra/Ovirt/ifcfg-eth0 
+   28  ifconfig
+   29  cat /infra/Ovirt/ifcfg-eth0 
+   30  ifconfig
+   31  vim /etc/dnsmasq.conf 
+   32  systemctl restart dnsmasq
+   33  vim /etc/dnsmasq.conf 
+   34  tail -f /var/log/dnsmasq.log 
+   35  cd /data/iso/b7063455-d78f-461c-8925-c1c83bc7d317/images/11111111-1111-1111-1111-111111111111/
+   36  wget http://mirror.globo.com/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso
+   37  ls -la
+   38  rm -rf CentOS-7-x86_64-Minimal-1810.iso 
+   39  wget http://ftp.unicamp.br/pub/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso
+   40  ls -la
+   41  chown 36:36 CentOS-7-x86_64-Minimal-1810.iso 
+   42  tail -f /var/log/dnsmasq.log 
+   43  netstat -ntpl
+   44  cat /infra/Ovirt/ifcfg-eth0 
+   45  yum provides nmtui
+   46  yum install NetworkManager-tui-1.12.0-8.el7_6.x86_64 -y
+   47  nmtui
+   48  vim /etc/sysconfig/network-scripts/ifcfg-eth0
+   49  vim /etc/sysconfig/network-scripts/ifcfg-eth1
+   50  /etc/init.d/network restart
+   51  ifconfig
+   52  brctl show
+   53  vim /etc/sysconfig/network-scripts/ifcfg-ovirtmgmt 
+   54  vim /etc/sysconfig/network-scripts/ifcfg-eth1
+   55  cat /infra/Ovirt/ifcfg-eth0 
+   56  cd /etc/sysconfig/network-scripts/
+   57  ls -la
+   58  vim ifcfg-ovirtmgmt 
+   59  cat /infra/Ovirt/ifcfg-eth0 
+   60  vim ifcfg-ovirtmgmt 
+   61  vim ifcfg-eth1
+   62  vim ifcfg-eth0
+   63  vim ifcfg-eth1
+   64  ifconfig
+   65  vim ifcfg-eth1
+   66  vim ifcfg-eth0
+   67  /etc/init.d/network restart
+   68  ifconfig
+   69  netstat -ntpl
+   70  ifconfig
+   71  reboot
+   72  # wget dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
+   73  wget dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
+   74  rpm -ihv epel-release-7-11.noarch.rpm
+   75  yum -y install htop mlocate
+   76  yum -y install http://resources.ovirt.org/pub/yum-repo/ovirt-release42.rpm
+   77  yum update
+   78  y
+   79  ls -la
+   80  cd /etc/
+   81  ls -la
+   82  vim grub2.cfg
+   83  yum -y install ovirt-engine
+   84  cat grub2.cfg 
+   85  engine-setup --accept-defaults
+   86  yum -y install ovirt-engine
+   87  locate epel
+   88  updatedb
+   89  locate epel
+   90  vim /etc/yum.repos.d/epel.repo
+   91  yum -y install ovirt-engine
+   92  locate epel
+   93  cat grub2.cfg 
+   94  vim grub2.cfg 
+   95  engine-setup --accept-defaults
+   96  cat grub2.cfg 
+   97  :q!
+   98  clear
+   99  passwd
+  100  cd /etc/sysconfig
+  101  ls -la
+  102  cd /etc/systemd/system/
+  103  ls -la
+  104  cd ..
+  105  ls -la
+  106  cd /usr/lib/systemd/system/
+  107  ls -la
+  108  vim vdsmd.service
+  109  df -h
+  110  cd /
+  111  ls -la
+  112  mkdir data
+  113  cd data/
+  114  ls -la
+  115  mkdir drives
+  116  mkdir iso
+  117  shown 36: ./*
+  118  chown 36: ./*
+  119  chown 36: drives iso
+  120  ls -la
+  121  chown 36: drives
+  122  cat /etc/passwd
+  123  chown vdsm: drives iso
+  124  ls -la
+  125  ifconfig
+  126  cd /etc/sysconfig/network-scripts/
+  127  ls -la
+  128  vim ifcfg-ovirtmgmt 
+  129  vim ifcfg-eth1
+  130  vim ifcfg-eth0
+  131  vim ifcfg-eth1
+  132  vim ifcfg-eth0
+  133  brctl show
+  134  /etc/init.d/network restart
+  135  brctl show
+  136  vim ifcfg-eth0
+  137  vim ifcfg-eth1
+  138  q!
+  139  ifconfig
+  140  ifdown eth1
+  141  ls -la
+  142  brctl 
+  143  brctl show
+  144  brctl delif ovirtmgmt eth0
+  145  brctl show
+  146  brctl delif ovirtmgmt eth1
+  147  brctl addif ovirtmgmt eth0
+  148  ifconfig
+  149  brctl 
+  150  systemctl status engine-ovirt
+  151  systemctl status ovirt-engine
+  152  systemctl restart ovirt-engine
+  153  netstat -ntpl
+  154  /etc/init.d/network restart
+  155  systemctl status network
+  156  systemctl status network -l
+  157  nmtui
+  158  vim ifcfg-eth1
+  159  /etc/init.d/network restart
+  160  journalctl -u network
+  161  ifup eth1
+  162  ifup eth0
+  163  ifup ovirtmgmt
+  164  ifup eth1
+  165  ifconfig
+  166  ifup eth1
+  167  vim ifcfg-eth1
+  168  ifup eth1
+  169  /etc/init.d/network restart
+  170  brctl show
+  171  systemctl stop firewalld
+  172  systemctl start firwalld
+  173  systemctl start firewalld
+  174  iptables-save 
+  175  firewall-cmd --list
+  176  firewall-cmd --list-services
+  177  firewall-cmd --add
+  178  firewall-cmd --list-all
+  179  firewall-cmd --list-posts
+  180  firewall-cmd --list-ports
+  181  firewall-cmd --list-interfaces
+  182  systemctl stop firewalld
+  183  netstat -ntpl
+  184  reboot
+  185  ifconfig
+  186  ps aux
+  187  netstat -ntpl
+  188  firewall-cmd --list
+  189  firewall-cmd --permanent --add-service ovirt-nfs
+  190      firewall-cmd --permanent --add-service ovirt-postgres
+  191      firewall-cmd --permanent --add-service ovirt-https
+  192      firewall-cmd --permanent --add-service ovirt-fence-kdump-listener
+  193      firewall-cmd --permanent --add-service ovirt-websocket-proxy
+  194      firewall-cmd --permanent --add-service ovirt-http
+  195      firewall-cmd --reload
+  196  vim /etc/ovirt-engine/firewalld/ovirt-http.xml 
+  197  ls -la /etc/firewalld/services/
+  198  cp -r /etc/ovirt-engine/firewalld/* /etc/firewalld/services/
+  199  firewall-cmd --permanent --add-service ovirt-postgres
+  200   firewall-cmd --permanent --add-service ovirt-https
+  201   firewall-cmd --permanent --add-service ovirt-fence-kdump-listener
+  202   firewall-cmd --permanent --add-service ovirt-imageio-proxy
+  203   firewall-cmd --permanent --add-service ovirt-websocket-proxy
+  204   firewall-cmd --permanent --add-service ovirt-http
+  205   firewall-cmd --permanent --add-service ovirt-vmconsole-proxy
+  206   firewall-cmd --reload
+  207  netstat -ntpl
+  208  firewall-cmd --permanent -add-port
+  209  vim /etc/firewalld/services/ovirt-vmconsole.xml 
+  210  vim /etc/firewalld/services/ovirt-vmconsole-proxy.xml 
+  211   firewall-cmd --permanent --add-service ovirt-vmconsole
+  212   firewall-cmd --reload
+  213  yum install tcpdump -y
+  214   firewall-cmd --permanent --add-port
+  215  irewall-cmd --add-port=5900-5950/tcp
+  216  firewall-cmd --add-port=5900-5950/tcp
+  217  tail -f /var/log/dnsmasq.log 
+  218  systemctl status dnsmasq
+  219  systemctl restart dnsmasq
+  220  systemctl enable dnsmasq
+  221  systemctl status dnsmasq
+  222  tail -f /var/log/dnsmasq.log 
+  223  ping 192.168.0.1
+  224  ifconfig
+  225  ping -I interna 192.168.0.1
+  226  ip rule list
+  227  ping -I interna 192.168.0.1
+  228  ifconfig
+  229  iptables-save 
+  230  tcpdump -i interna -n -nnn
+  231  history | grep -i firewalld
+  232  firewall-cmd --add-service=dhcp --permanent
+  233  firewall-cmd --permanent --add-port=5900-5950/tcp
+  234  firewall-cmd --reload
+  235  tcpdump -i interna -n -nnn
+  236  firewall-cmd --permanent --direct --add-rule ipv4 nat POSTROUTING O -o ovirtmgmt -j MASQUERADE
+  237  vim /etc/sysctl.conf 
+  238  sysctl -p
+  239  firewall-cmd --direct --add-rule ipv4 nat POSTROUTING 0 -o ovirtmgmt -j MASQUERADE
+  240  firewall-cmd --direct --add-rule ipv4 filter FORWARD 0 -i interna -o ovirtmgmt -j ACCEPT
+  241  firewall-cmd --direct --add-rule ipv4 filter FORWARD 0 -i ovirtmgmt -o interna -m state --state RELATED,ESTABLISHED -j ACCEPT
+  242  firewall-cmd --permanent --direct --add-rule ipv4 nat POSTROUTING 0 -o ovirtmgmt -j MASQUERADE
+  243  firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 0 -i interna -o ovirtmgmt -j ACCEPT
+  244  firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 0 -i ovirtmgmt -o interna -m state --state RELATED,ESTABLISHED -j ACCEPT
+  245  firewall-cmd --permanent --add-port=53/udp
+  246  firewall-cmd --permanent --add-port=67/udp
+  247  firewall-cmd --permanent --add-port=123/udp
+  248  tail -f /var/log/dnsmasq.log 
+  249  ping www.google.com
+  250  vim /etc/dnsmasq.conf 
+  251  vim /infra/Ovirt/dnsmasq/dnsmasq.conf 
+  252  vim /etc/dnsmasq.conf 
+  253  vim /infra/Ovirt/dnsmasq/dnsmasq.conf 
+  254  systemctl restart dnsmasq
+  255  tail -f /var/log/dnsmasq.log 
+  256  tcpdump -i interna -n -nnn
+  257  history | grep -i firewalld
+  258  history | grep -i firewall
+  259  netstat -ntpl
+  260  firewall-cmd --direct --add-rule ipv4 filter FORWARD 0 -i interna -m state --state RELATED,ESTABLISHED -j ACCEPT
+  261  tcpdump -i interna -n -nnn
+  262  ping 192.168.0.170
+  263  firewall-cmd --permanent --add-port=53/tcp
+  264  ip rule list
+  265  tcpdump -i interna -n -nnn
+  266  history | grep -i firewall
+  267  firewall-cmd --add-service=dns
+  268  firewall-cmd --add-service=dhcp
+  269  firewall-cmd --add-service=dhcp --permanent
+  270  firewall-cmd --permanent --add-service=dhcp
+  271  vim /infra/Ovirt/make_new.yml 
+  272  cd /infra/Ovirt/
+  273  ls -la
+  274  cp -r make_new.yml make_manual.yml
+  275  vim make_manual.yml 
+  276  yum install ansible
+  277  ansible-playbook make_manual.yml -v
+  278  vim make_manual.yml 
+  279  ansible-playbook make_manual.yml -v
+  280  vim make_manual.yml 
+  281  ansible-playbook make_manual.yml -v
+  282  ping davi
+  283  vim make_manual.yml 
+  284  ssh awx
+  285  tail -f /var/log/secure 
+  286  yum install fail2ban -y
+  287  systemctl enable fail2ban
+  288  vim /etc/fail2ban/jail.local
+  289  vim /etc/fail2ban/jail.conf 
+  290  systemctl start fail2ban
+  291  fail2ban-client status
+  292  fail2ban-client status sshd
+  293  fail2ban-client enable sshd
+  294  systemctl enable fail2ban
+  295  ssh awx
+  296  curl -v 192.168.0.172
+  297  tcpdump -i ovirtmgmt -n -nn
+  298  tcpdump -i ovirtmgmt -n -nn not port 22
+  299  ifconfig
+  300  ifconfig eth0:1 147.135.85.86
+  301  ifconfig
+  302  vim /etc/httpd/conf.d/ovirt-engine-root-redirect.conf 
+  303  vim /etc/httpd/conf.d/z-ovirt-engine-proxy.conf 
+  304  cd /etc/httpd/conf.d/
+  305  grep -r vhost *
+  306  vim /etc/httpd/conf.d/ovirt-engine-root-redirect.conf 
+  307  apachectl configtest
+  308  apachectl graceful
+  309  vim /etc/httpd/conf.d/ovirt-engine-root-redirect.conf 
+  310  ping awx
+  311  curl -v http://awx/awx
+  312  vim /etc/httpd/conf.d/ovirt-engine-root-redirect.conf 
+  313  apachectl graceful
+  314  vim /etc/httpd/conf.d/ovirt-engine-root-redirect.conf 
+  315  apachectl graceful
+  316  vim /etc/httpd/conf.d/ovirt-engine-root-redirect.conf 
+  317  vim /infra/Ovirt/commands 
+  318  ping awx
+  319  firewall-cmd --add-rich-rule='rule family="ipv4" destination address="147.135.85.86" forward-port to-addr="192.168.0.172" protocol="tcp" port="0-65535"'
+  320  vim /infra/Ovirt/commands 
+  321  vim /etc/httpd/conf.d/ovirt-engine-root-redirect.conf 
+  322  cd /infra/
+  323  ls -la
+  324  cd Ovirt/
+  325  ls -la
+  326  vim make_manual.yml 
+  327  ansible-playbook make_manual.yml -v
+  328  ssh proxy
+  329  ping proxy
+  330  ping awx
+  331  ping proxy
+  332  ping 192.168.0.173
+  333  ssh 192.168.0.173
+  334  ssh 192.168.0.174
+  335  vim /etc/dnsmasq.d/dnsmasq.hosts.conf 
+  336  vim /etc/hosts
+  337  ping proxy
+  338  ssh-copy-id proxy
+  339  ssh-keygen 
+  340  ssh-copy-id proxy
+  341  ssh proxy
+  342  cd ..
+  343  git clone https://github.com/waharnum/ansible-nginx-reverse-proxy.git
+  344  ls -la
+  345  cd ansible-nginx-reverse-proxy/
+  346  ls -la
+  347  vim README.md 
+  348  vim inventory
+  349  vim README.md 
+  350  vim deploy.yml
+  351  ansible-playbook deploy.yml -i inventory 
+  352  ssh proxy
+  353  vim deploy.yml
+  354  vim inventory 
+  355  ansible all -m ping -vvv
+  356  ansible all -m ping -i inventory -vvvvv
+  357  vim inventory 
+  358  ansible-playbook deploy.yml -i inventory
+  359  vim deploy.yml 
+  360  ls -la
+  361  cd ..
+  362  ls -la
+  363  cd ansible-nginx-reverse-proxy/
+  364  ls -la
+  365  ls -la tasks/
+  366  vim tasks/deploy.yml 
+  367  vim tasks/main.yml 
+  368  ls -la
+  369  vim README.md 
+  370  mkdir roles
+  371  mkdir roles/ansible-nginx-reverse-proxy
+  372  ls -la
+  373  mv defaults handlers meta tasks templates vars roles/ansible-nginx-reverse-proxy/
+  374  ls -la
+  375  vim deploy.yml 
+  376  vim README.md 
+  377  vim deploy.yml 
+  378  ansible-playbook deploy.yml -i inventory 
+  379  vim deploy.yml 
+  380  vim roles/ansible-nginx-reverse-proxy/tasks/main.yml 
+  381  vim deploy.yml 
+  382  ls -la
+  383  vim README.md 
+  384  vim deploy.yml 
+  385  vim roles/ansible-nginx-reverse-proxy/tasks/main.yml 
+  386  vim roles/ansible-nginx-reverse-proxy/tasks/install.yml
+  387  vim roles/ansible-nginx-reverse-proxy/tasks/deploy.yml 
+  388  vim roles/ansible-nginx-reverse-proxy/tasks/install.yml
+  389  ansible-playbook deploy.yml -i inventory 
+  390  vim inventory 
+  391  ls -la
+  392  vim roles/ansible-nginx-reverse-proxy/templates/reverse-proxy.conf.j2 
+  393  ls -la
+  394  vim deploy.yml 
+  395  ssh proxy
+  396  ansible-playbook deploy.yml -i inventory 
+  397  ssh proxy
+  398  vim deploy.yml 
+  399  ansible-playbook deploy.yml -i inventory 
+  400  firewall-cmd --reload
+  401  history
+  402  ping proxy
+  403  firewall-cmd --add-rich-rule='rule family="ipv4" destination address="147.135.85.86" forward-port to-addr="192.168.0.174" protocol="tcp" port="0-65535"'
+  404  ssh proxy
+  405  cp -r /etc/pki/ovirt-engine/ca.pem .
+  406  cat ca.pem 
+  407  cp -r /etc/pki/ovirt-engine/apache-ca.pem .
+  408  cat apache-ca.pem 
+  409  vim /etc/httpd/conf.d/ssl.conf
+  410  scp -r /etc/pki/ovirt-engine/keys/apache.key.nopass proxy:/etc/ssl
+  411  vim /etc/httpd/conf.d/ssl.conf
+  412  scp -r /etc/pki/ovirt-engine/apache-ca.pem proxy:/etc/ssl
+  413  vim /etc/httpd/conf.d/ssl.conf
+  414  scp -r /etc/pki/ovirt-engine/certs/apache.cer proxy:/etc/ssl
+  415  vim /etc/httpd/conf.d/ovirt-engine-root-redirect.conf 
+  416  apachectl graceful
+  417  ls -la
+  418  cd /infra/
+  419  ls -la
+  420  cd ansible-nginx-reverse-proxy/
+  421  ls -la
+  422  vim deploy.yml 
+  423  vim roles/ansible-nginx-reverse-proxy/templates/reverse-proxy.conf.j2 
+  424  cd ..
+  425  cd Ovirt/
+  426  ls -la
+  427  vim make_manual.yml 
+  428  cd ;;
+  429  cd ..
+  430  ls -la
+  431  mkdir roles
+  432  mkdir roles/ovirt
+  433  mkdir roles/ansible-nginx-reverse-proxy
+  434  cp -r ansible-nginx-reverse-proxy/* roles/ansible-nginx-reverse-proxy/
+  435  ls -la
+  436  cd roles/ovirt/
+  437  mkdir tasks
+  438  cd ..
+  439  cp -r Ovirt/make_manual.yml roles/ovirt/tasks/
+  440  cd roles/ovirt/tasks/
+  441  ls -la
+  442  mv make_manual.yml main.yml
+  443  cd ..
+  444  vim deploy.yml
+  445  cd ..
+  446  vim Ovirt/make_manual.yml 
+  447  ls -la
+  448  vim deploy.yml
+  449  vim Ovirt/make_manual.yml 
+  450  vim deploy.yml
+  451  vim deploy.yml 
+  452  vim roles/ovirt/tasks/main.yml 
+  453  ansible-playbook deploy.yml 
+  454  vim deploy.yml 
+  455  vim Ovirt/make_manual.yml 
+  456  vim ansible-nginx-reverse-proxy/deploy.
+  457  vim ansible-nginx-reverse-proxy/deploy.yml 
+  458  vim deploy.yml 
+  459  vim ansible-nginx-reverse-proxy/deploy.yml 
+  460  vim deploy.yml 
+  461  ansible-playbook deploy.yml 
+  462  vim deploy.yml 
+  463  vim Ovirt/make_manual.yml 
+  464  vim roles/ovirt/tasks/main.yml 
+  465  ansible-playbook deploy.yml 
+  466  cd /infra/
+  467  ls -la
+  468  vim deploy.yml 
+  469  vim roles/ovirt/tasks/main.yml 
+  470  vim deploy.yml 
+  471  df -h
+  472  engine-backup --help
+  473  hosted-engine --set-maintenance --mode=global
+  474  engine-backup --mode=backup --scope=all --file=backup.tar --log=backup.log
+  475  du -chs backup.tar 
+  476  cp -r backup.tar /infra/Ovirt/
+  477  ls -la
+  478  history > comandos.txt
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether a4:bf:01:1f:1e:c0  txqueuelen 1000  (Ethernet)
+        RX packets 3309974  bytes 1181973134 (1.1 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2267502  bytes 1859422382 (1.7 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device memory 0xa2b00000-a2bfffff  
+
+eth0:1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 147.135.85.86  netmask 255.255.0.0  broadcast 147.135.255.255
+        ether a4:bf:01:1f:1e:c0  txqueuelen 1000  (Ethernet)
+        device memory 0xa2b00000-a2bfffff  
+
+eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether a4:bf:01:1f:1e:c1  txqueuelen 1000  (Ethernet)
+        RX packets 330245  bytes 29058522 (27.7 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 206  bytes 25461 (24.8 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device memory 0xa2900000-a29fffff  
+
+interna: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.0.1  netmask 255.255.255.0  broadcast 192.168.0.255
+        ether a4:bf:01:1f:1e:c1  txqueuelen 1000  (Ethernet)
+        RX packets 480426  bytes 60824835 (58.0 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 165873  bytes 922005666 (879.2 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1  (Local Loopback)
+        RX packets 18126847  bytes 5226877633 (4.8 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 18126847  bytes 5226877633 (4.8 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ovirtmgmt: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 147.135.1.117  netmask 255.255.255.0  broadcast 147.135.1.255
+        inet6 fe80::a6bf:1ff:fe1f:1ec0  prefixlen 64  scopeid 0x20<link>
+        ether a4:bf:01:1f:1e:c0  txqueuelen 1000  (Ethernet)
+        RX packets 2397404  bytes 1087511074 (1.0 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1684388  bytes 1827946160 (1.7 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vnet0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::fc6f:c5ff:fe28:2  prefixlen 64  scopeid 0x20<link>
+        ether fe:6f:c5:28:00:02  txqueuelen 1000  (Ethernet)
+        RX packets 76728  bytes 30111294 (28.7 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 386773  bytes 794105674 (757.3 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vnet1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::fc6f:c5ff:fe28:5  prefixlen 64  scopeid 0x20<link>
+        ether fe:6f:c5:28:00:05  txqueuelen 1000  (Ethernet)
+        RX packets 12436  bytes 770224 (752.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 230588  bytes 20393387 (19.4 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vnet2: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::fc6f:c5ff:fe28:4  prefixlen 64  scopeid 0x20<link>
+        ether fe:6f:c5:28:00:04  txqueuelen 1000  (Ethernet)
+        RX packets 84507  bytes 26149975 (24.9 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 319956  bytes 80658361 (76.9 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+# Generated by VDSM version 4.20.43-1.el7
+DEVICE=eth0
+ONBOOT=yes
+MTU=1500
+NM_CONTROLLED=no
+BRIDGE=ovirtmgmt
+DEFROUTE=no
+IPV6INIT=no
+# Generated by VDSM version 4.20.43-1.el7
+DEVICE=eth1
+BRIDGE=interna
+ONBOOT=yes
+MTU=1500
+DEFROUTE=no
+NM_CONTROLLED=no
+IPV6INIT=no
+ZONE=public
+# Generated by VDSM version 4.20.43-1.el7
+DEVICE=ovirtmgmt
+TYPE=Bridge
+DELAY=0
+STP=off
+ONBOOT=yes
+IPADDR=147.135.1.117
+NETMASK=255.255.255.0
+GATEWAY=147.135.1.254
+BOOTPROTO=none
+MTU=1500
+DEFROUTE=yes
+NM_CONTROLLED=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+DNS1=127.0.0.1
+DNS2=213.186.33.99
+ZONE=public
+# Generated by VDSM version 4.20.43-1.el7
+DEVICE=interna
+TYPE=Bridge
+DELAY=0
+STP=off
+ONBOOT=yes
+IPADDR=192.168.0.1
+NETMASK=255.255.255.0
+BOOTPROTO=none
+MTU=1500
+DEFROUTE=no
+NM_CONTROLLED=no
+IPV6INIT=no
+ZONE=public
