@@ -1,0 +1,18 @@
+- os_router:
+    cloud: "{{ cloudname }}"
+    state: absent
+    name: "{{ netname }}_router"
+
+- os_subnet:
+    cloud: "{{ cloudname }}"
+    state: absent
+    name: "{{ netname }}_subnet"
+    network_name: "{{ netname }}_network"
+
+- name: int_network
+  os_network:
+    cloud: "{{ cloudname }}"
+    state: absent
+    name: "{{ netname }}_network"
+
+

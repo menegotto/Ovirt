@@ -1,0 +1,32 @@
+---
+- name: teste
+  hosts: localhost
+  vars:
+    cloudname: admin
+    netname: new
+  tasks:
+  - name: int_network
+    os_network:
+      cloud: "{{ cloudname }}"
+      state: present
+      name: "{{ netname }}_network"
+      external: false
+    register: osnetwork
+
+  - os_subnet:
+      cloud: "{{ cloudname }}"
+      state: present
+      network_name: "{{ netname }}_network"
+      name: "{{ netname }}_subnet"
+      cidr: 192.168.24.0/23
+      dns_nameservers:
+        - 8.8.8.7
+        - 8.8.8.8
+
+  - os_router:
+     cloud: "{{ cloudname }}"
+     state: present
+     name: "{{ netname }}_router"
+     interfaces: "{{ netname }}_subnet"
+     network: public
+
