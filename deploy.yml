@@ -1,0 +1,31 @@
+---
+- hosts: localhost
+  remote_user: root
+  become: yes
+  vars:
+    hostname: testedeploy
+  roles:
+    - ovirt
+
+- hosts: nginx
+  remote_user: root
+  become: yes
+  vars:
+    - nginx_reverse_proxy_proxies:
+      - config_name: app1proxy
+        backend_name: awx
+        backends:
+          - 192.168.0.173
+        domains:
+          - awx.sirworks.org
+      - config_name: app2proxy
+        backend_name: ovirt
+        backends:
+          - 192.168.0.1
+        domains:
+          - ovirt.siworks.org
+        balancer_config: least_conn;
+        balancer_config: ip_hash;
+
+  roles:
+    - ansible-nginx-reverse-proxy

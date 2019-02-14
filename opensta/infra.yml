@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  vars:
+    cloudname: admin
+    netname: newc
+    server: serverc
+  tasks:
+    - include_tasks: network2.yml
+    - include_tasks: image.yml
+    - include_tasks: sec.yml
+    - include_tasks: instancia.yml
+

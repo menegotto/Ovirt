@@ -1,0 +1,2 @@
+[nginx]
+proxy ansible_user=root

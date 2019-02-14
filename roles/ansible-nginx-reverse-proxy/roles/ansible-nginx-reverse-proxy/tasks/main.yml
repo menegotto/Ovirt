@@ -1,0 +1,6 @@
+---
+# tasks file for ansible-nginx-reverse-proxy
+- include: install.yml
+
+- include: deploy.yml
+  tags: deploy

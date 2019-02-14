@@ -1,0 +1,6 @@
+- name: Create new keypair from current user's default SSH key
+  os_keypair:
+    cloud: "{{ cloudname }}"
+    state: absent
+    name: new_key
+

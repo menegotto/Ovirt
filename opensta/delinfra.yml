@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  vars:
+    cloudname: admin
+    netname: new
+    server: mac
+  tasks:
+    - include_tasks: clean_instancia.yml
+    - include_tasks: clean_network.yml
+    - include_tasks: clean_image.yml
+    - include_tasks: clean_sec.yml
+

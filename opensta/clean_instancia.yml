@@ -1,0 +1,6 @@
+- name: Create server instance
+  os_server:
+    state: absent
+    name: "{{ server  }}"
+  register: testServer
+

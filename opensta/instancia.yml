@@ -1,0 +1,15 @@
+- name: Create server instance
+  os_server:
+    state: present
+    name: "{{ server  }}"
+    image: cirros
+    flavor: 1
+    security_groups: new_secgr
+    key_name: "{{ keypair.key.name }}"
+    nics:
+      - net-id: "{{ osnetwork.network.id }}"
+        net-name: "{{ netname }}_network"
+  register: testServer
+
+- name: Show Server's IP
+  debug: var=testServer.openstack.public_v4
